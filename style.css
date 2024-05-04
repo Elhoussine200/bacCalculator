@@ -1,0 +1,12 @@
+body {
+    font-family: sans-serif;
+}
+.fail{
+color: red;
+}
+.success{
+    color: green;
+}
+.inbetween{
+    color: blue;
+}
