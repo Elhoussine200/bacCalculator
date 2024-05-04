@@ -22,8 +22,6 @@ function calculatBac() {
 
     }
 
-
-
     resulteDiv.innerText = message
     resulteDiv.classList.remove("success","inbetween","fail")
     resulteDiv.classList.add(classValue)
