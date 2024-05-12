@@ -4,25 +4,38 @@ function calculatBac() {
     let AnneeScolaire = document.getElementById("anneeScolaire").value
     let resulteDiv = document.getElementById("Resulte")
     const total = (Number(national) * 2 + Number(Regional) + Number(AnneeScolaire))/4
-    let message = ""
-    classValue=""
-    if (total >= 10) {
-        message = "Mabroooook jebty : "+ total
-        classValue="success"
-    }
+    
+    const message = isSuccess(total).msg
+    const classValue=isSuccess(total).class
+    
+        resulteDiv.innerText = message
+        resulteDiv.classList.remove("success","inbetween","fail")
+        resulteDiv.classList.add(classValue)
+ }
 
-    else if (total < 10 && total > 7) {
-        message = " 3ndk ratrappage jbti : " + total+ " zgueltih b : " + (10 - total)
-        classValue="inbetween"
-    }
-
-    else {
-        message = ("7lawet lbac 3years  jbti ghir : "+ total)
-        classValue="fail"
-
-    }
-
-    resulteDiv.innerText = message
-    resulteDiv.classList.remove("success","inbetween","fail")
-    resulteDiv.classList.add(classValue)
+ function isSuccess(value){
+let respons={
+    msg:"",
+    class:""
 }
+    if(value>=10) {
+        respons.msg="Mabroooook jebty : "+ value
+        respons.class="success"
+    }
+    else if(value< 10 && value > 7) {
+        respons.msg=" 3ndk ratrappage jbti : " + value+ " zgueltih b : " + (10 - value)
+        respons.class="inbetween"
+    }
+    else{
+        respons.msg= ("7lawet lbac 3years  jbti ghir : "+ value)
+        respons.class="fail"
+
+    }
+
+    
+    return respons
+ }
+
+ testing=()=>{
+    
+ }
