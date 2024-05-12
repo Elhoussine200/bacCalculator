@@ -1,41 +1,45 @@
-function calculatBac() {
-    let national = document.getElementById("National").value
-    let Regional = document.getElementById("Regional").value
-    let AnneeScolaire = document.getElementById("anneeScolaire").value
-    let resulteDiv = document.getElementById("Resulte")
-    const total = (Number(national) * 2 + Number(Regional) + Number(AnneeScolaire))/4
-    
-    const message = isSuccess(total).msg
-    const classValue=isSuccess(total).class
-    
-        resulteDiv.innerText = message
-        resulteDiv.classList.remove("success","inbetween","fail")
-        resulteDiv.classList.add(classValue)
- }
+bacNote = 
+{
+    regional: 0,
+    national: 0,
+    AnneeScolaire: 0,
+    message: "",
+    class: "",
 
- function isSuccess(value){
-let respons={
-    msg:"",
-    class:""
+    getNote: function () {
+        return (Number(this.national) * 2 + Number(this.regional) + Number(this.AnneeScolaire)) / 4
+    },
+    ValidateResuts: function () {
+        const total = this.getNote()
+
+        if (total >= 10) {
+            this.class = "success";
+            this.message = "Mabroooook jebty : " + total
+        }
+
+        else if (total < 10 && total > 7) {
+            this.class = "inbetween";
+            this.message = "3ndk ratrappage jbti : " + total + " zgueltih b : " + (10 - total)
+        }
+
+        else {
+            this.class = "fail";
+            this.message = "7lawet lbac 3years  jbti ghir : " + total
+        }
+
+    }
 }
-    if(value>=10) {
-        respons.msg="Mabroooook jebty : "+ value
-        respons.class="success"
-    }
-    else if(value< 10 && value > 7) {
-        respons.msg=" 3ndk ratrappage jbti : " + value+ " zgueltih b : " + (10 - value)
-        respons.class="inbetween"
-    }
-    else{
-        respons.msg= ("7lawet lbac 3years  jbti ghir : "+ value)
-        respons.class="fail"
 
-    }
+function calculatBac() {
+    let resulteDiv = document.getElementById("Resulte")
 
-    
-    return respons
- }
+    bacNote.national = document.getElementById("National").value
+    bacNote.regional = document.getElementById("Regional").value
+    bacNote.AnneeScolaire = document.getElementById("anneeScolaire").value
 
- testing=()=>{
-    
- }
+    bacNote.ValidateResuts()
+
+    resulteDiv.innerText = bacNote.message
+    resulteDiv.classList.remove("success", "inbetween", "fail")
+    resulteDiv.classList.add(bacNote.class)
+}
